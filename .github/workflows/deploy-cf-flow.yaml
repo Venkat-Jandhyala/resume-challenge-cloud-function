@@ -42,5 +42,5 @@ jobs:
           --runtime python38 \
           --trigger-http \
           --allow-unauthenticated \
-          --entry-point count_page_visits
+          --entry-point count_page_visits \
           --set-env-vars GOOGLE_APPLICATION_CREDENTIALS=${HOME}/gcloud-service-account.json
