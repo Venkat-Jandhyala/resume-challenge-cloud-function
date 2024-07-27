@@ -37,11 +37,11 @@ jobs:
 
     - name: Deploy to Cloud Function
       run: |
-        gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
         gcloud config set run/region europe-west2
+        gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
         gcloud functions deploy rc-count-visits-cf \
           --runtime python38 \
           --trigger-http \
           --allow-unauthenticated \
           --entry-point count_page_visits \
-          --set-env-vars GOOGLE_APPLICATION_CREDENTIALS=${{ secrets.GCP_SA_FIRESTORE_KEY }}
+          --set-env-vars GOOGLE_APPLICATION_CREDENTIALS=${HOME}/gcloud-service-account.json
