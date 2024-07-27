@@ -38,6 +38,7 @@ jobs:
     - name: Deploy to Cloud Function
       run: |
         gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
+        gcloud config set region europe-west2
         gcloud functions deploy rc-count-visits-cf \
           --runtime python38 \
           --trigger-http \
