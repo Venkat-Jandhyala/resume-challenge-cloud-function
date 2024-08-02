@@ -22,14 +22,14 @@ def count_page_visits(request):
 
       doc_ref.set({ 'visits': new_value }, merge=True)
 
-      return f"{new_value}", 200
+      return {'visits': new_value}, 200
     else:
-      return "Record does not exists.", 404
+      return {'error': "Could not find the records", 'code': 404}, 404
   except PermissionDenied as e:
     print(e)
-    return str(e), 401
+    return {'error': 'Not authorised to update the visits', 'code': 401}, 401
   except Exception as e:
     print(e)
-    return str(e), 500
+    return {'error': 'Unexpected error', 'code': 500}, 500
 
 #app = create_app(count_page_visits)
